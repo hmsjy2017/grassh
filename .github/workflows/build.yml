@@ -84,7 +84,10 @@ jobs:
             ln -s /opt/flutter/$VERSION/bin/dart /usr/bin/dart
             yq eval '.environment.flutter' pubspec.yaml
             flutter build linux --build-number=${{ github.run_number }}
-            cp -r build/linux/arm64/release/bundle/* /artifacts/
+            pwd
+            ls -lh
+            ls /
+            cp -r build/linux/arm64/release/bundle/ /artifacts/
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
