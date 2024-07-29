@@ -67,7 +67,7 @@ jobs:
           shell: /bin/bash
           install: |
             apt-get update
-            apt-get install -y tar unzip xz-utils wget curl git ninja-build libgtk-3-dev make cmake
+            apt-get install -y tar unzip xz-utils wget curl git ninja-build libgtk-3-dev make cmake clang
           run: |
             git clone https://github.com/yuanzui-cf/grassh
             cd grassh
