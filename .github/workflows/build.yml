@@ -63,21 +63,21 @@ jobs:
           githubToken: ${{ github.token }}
 
           run: |
-            sudo apt-get update
-            sudo apt-get install -y tar xz-utils wget curl git ninja-build libgtk-3-dev
+            apt-get update
+            apt-get install -y tar xz-utils wget curl git ninja-build libgtk-3-dev
             git clone https://github.com/yuanzui-cf/grassh
             cd grassh
-            sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_arm64 -O /usr/bin/yq
-            sudo chmod +x /usr/bin/yq
+            wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_arm64 -O /usr/bin/yq
+            chmod +x /usr/bin/yq
             wget https://github.com/containerbase/flutter-prebuild/releases/latest/download/version
             VERSION=$(cat version)
             wget https://github.com/containerbase/flutter-prebuild/releases/latest/download/flutter-$VERSION-aarch64.tar.xz
-            sudo mkdir /opt/flutter
-            sudo tar -xvJf flutter-$VERSION-aarch64.tar.xz -C /opt/flutter
-            sudo chmod +x /opt/flutter/$VERSION/bin/flutter
-            sudo chmod +x /opt/flutter/$VERSION/bin/dart
-            sudo ln -s /opt/flutter/$VERSION/bin/flutter /usr/bin/flutter
-            sudo ln -s /opt/flutter/$VERSION/bin/dart /usr/bin/dart
+            mkdir /opt/flutter
+            tar -xvJf flutter-$VERSION-aarch64.tar.xz -C /opt/flutter
+            chmod +x /opt/flutter/$VERSION/bin/flutter
+            chmod +x /opt/flutter/$VERSION/bin/dart
+            ln -s /opt/flutter/$VERSION/bin/flutter /usr/bin/flutter
+            ln -s /opt/flutter/$VERSION/bin/dart /usr/bin/dart
             yq eval '.environment.flutter' pubspec.yaml
             uname -a
             echo ::set-output name=uname::$(uname -a)
